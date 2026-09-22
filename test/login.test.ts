@@ -6,8 +6,8 @@ describe('ServerRest - Valida o Login de usuario', () => {
     const authService = new AuthService();
 
     it('CT01 - Deve realizar login com sucesso e retornar status 200', async () => {
-        const usuarioValido = Fixture.load('usuarios/usuarioValido');
-        const response = await authService.login(usuarioValido);
+        const { email, password } = Fixture.load('usuarios/usuarioValido');
+        const response = await authService.login({ email, password });
         expect(response.status).to.equal(200);
         expect(response.data.message).to.equal("Login realizado com sucesso");
         expect(response.data.authorization).to.match(/^Bearer\s/);
