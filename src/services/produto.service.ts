@@ -1,7 +1,14 @@
 import { api } from './apiClient';
 import { ProdutoPayload } from '../types/produto.types';
+import type { filtroProdutos } from '../types/parametrosProdutos';
 
 export class ServicoDeProduto {
+  async listarProdutos(params: filtroProdutos = {}) {
+    return api.get('/produtos', {
+      params: params
+    });
+  }
+
   async listarProdutoPorId(prodId: string) {
     return api.get(`/produtos/${prodId}`, {
     });
