@@ -1,0 +1,24 @@
+services:
+  api-tester:
+    # Usando a versão LTS mais recente (atualmente a 22 ou 20)
+    image: node:lts-alpine
+    container_name: node-tester-service
+
+    # Onde o código "mora" dentro do contêiner
+    working_dir: /home/node/app
+
+    # Mapeia a pasta atual (SSD) para dentro do contêiner
+    volumes:
+      - .:/home/node/app
+
+    # Este comando mantém o contêiner vivo e instala as dependências
+    # Ele verifica se a node_modules existe, se não, instala.
+    command: >
+      sh -c "npm install && tail -f /dev/null"
+
+    # Permite que você interaja com o terminal do contêiner se precisar
+    tty: true
+    stdin_open: true
+
+    environment:
+      - NODE_ENV=development

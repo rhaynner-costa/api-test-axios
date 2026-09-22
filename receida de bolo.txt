@@ -1,0 +1,15 @@
+Rodar os testes em container
+
+1-Conecte o SSD ao seu Mac M3.
+
+2-Inicie o Rancher Desktop e aguarde ele ficar com o status "Running" (verde).
+
+3-No terminal, vá para a pasta do seu projeto de testes no SSD:
+    cd /Volumes/rcBkp/Workspace/api-test-serverest
+
+4-Suba o contêiner do Node (que você configurou com node:lts-alpine):
+    docker compose up -d
+    # O container vai se chamar: node-tester-service
+
+5-Com o container online, rode os testes:
+    docker exec node-tester-service npm test  
